@@ -42,8 +42,6 @@ public class XposedInit implements IXposedHookLoadPackage {
         } catch (Exception e) {
             XposedBridge.log(e);
         }
-
-
     }
 
     private CloudBackupHook getHooks(String packageName, String versionName, int uid) {

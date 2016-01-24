@@ -62,6 +62,7 @@ public class XposedInit implements IXposedHookLoadPackage {
         switch (version) {
             case "6.3.9":
             case "6.3.8":
+            case "6.3.5":
                 mWechatHooks.put(uid, new CloudBackupHook(new PackageNames(packageName, version)));
                 break;
             default:

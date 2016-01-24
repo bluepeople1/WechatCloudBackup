@@ -22,7 +22,18 @@ public class PackageNames {
             case "6.3.8":
                 set638();
                 break;
+            case "6.3.5":
+                set635();
+                break;
         }
+    }
+
+    private void set635() {
+        uploadButton = "cpe";
+        textView = "cmU";
+        class1 += "ai";
+        method1 = "t0";
+        method2 = "rH";
     }
 
     private void set638() {

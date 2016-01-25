@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 'Google Apis:Google Apis:23'
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "com.fkzhang.wechatcloudbackup"
         minSdkVersion 16

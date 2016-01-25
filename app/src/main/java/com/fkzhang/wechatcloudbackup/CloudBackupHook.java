@@ -35,7 +35,7 @@ public class CloudBackupHook {
                         super.afterHookedMethod(param);
                         for (Object o : (Object[]) param.args[2]) {
                             String v = ((File) getObjectField(o, "file")).getName();
-                            if (v.contains("secondary-2")) {
+                            if (v.contains(mP.dexName)) {
                                 hookBackup((ClassLoader) getObjectField(
                                         param.args[0], "definingContext"));
                                 break;

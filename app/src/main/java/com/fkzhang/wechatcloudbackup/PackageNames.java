@@ -10,6 +10,7 @@ public class PackageNames {
     public String class1;
     public String method1;
     public String method2;
+    public String dexName;
 
     public PackageNames(String packageName, String version) {
         this.packageName = packageName;
@@ -17,6 +18,8 @@ public class PackageNames {
 
         initNames();
         switch (version) {
+            case "6.3.11":
+                set6311();
             case "6.3.9":
                 set639();
                 break;
@@ -30,14 +33,16 @@ public class PackageNames {
     }
 
     private void set635() {
+        dexName = "secondary-2";
         uploadButton = "cpe";
         textView = "cmU";
         class1 += "ai";
-        method1 = "t0";
+        method1 = "tO";
         method2 = "rH";
     }
 
     private void set638() {
+        dexName = "secondary-2";
         uploadButton = "ctn";
         textView = "crd";
         class1 += "ah";
@@ -46,11 +51,21 @@ public class PackageNames {
     }
 
     private void set639() {
+        dexName = "secondary-2";
         uploadButton = "cwt";
         textView = "gWq";
         class1 += "ah";
         method1 = "tr";
         method2 = "rf";
+    }
+
+    private void set6311() {
+        dexName = "secondary-1";
+        uploadButton = "czZ";
+        textView = "cxQ";
+        class1 += "ah";
+        method1 = "tD";
+        method2 = "rn";
     }
 
     private void initNames() {
@@ -59,5 +74,6 @@ public class PackageNames {
         class1 = packageName + ".model.";
         method1 = "";
         method2 = "";
+        dexName = "";
     }
 }

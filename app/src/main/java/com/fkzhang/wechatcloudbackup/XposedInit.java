@@ -58,6 +58,7 @@ public class XposedInit implements IXposedHookLoadPackage {
         String version = versionName.substring(0, versionName.lastIndexOf("."));
 
         switch (version) {
+            case "6.3.11":
             case "6.3.9":
             case "6.3.8":
             case "6.3.5":

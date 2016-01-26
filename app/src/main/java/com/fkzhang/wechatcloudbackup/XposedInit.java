@@ -36,10 +36,10 @@ public class XposedInit implements IXposedHookLoadPackage {
                         loadPackageParam.appInfo.uid);
                 if (hooks != null)
                     hooks.hook(loadPackageParam.classLoader);
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 XposedBridge.log(e);
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             XposedBridge.log(e);
         }
     }
@@ -65,7 +65,7 @@ public class XposedInit implements IXposedHookLoadPackage {
                 mWechatHooks.put(uid, new CloudBackupHook(new PackageNames(packageName, version)));
                 break;
             default:
-                XposedBridge.log("wechat version not supported, please upgrade");
+                XposedBridge.log("wechat version " + version + " not supported, please upgrade");
                 return null;
         }
 

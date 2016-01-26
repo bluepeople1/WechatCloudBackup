@@ -34,7 +34,13 @@ public class CloudBackupHook {
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                         super.afterHookedMethod(param);
                         for (Object o : (Object[]) param.args[2]) {
-                            String v = ((File) getObjectField(o, "file")).getName();
+                            String v;
+                            try{
+                                v = ((File) getObjectField(o, "file")).getName();
+                            }
+                            catch (Throwable t){
+                                v = ((File) getObjectField(o, "zip")).getName();
+                            }
                             if (v.contains(mP.dexName)) {
                                 hookBackup((ClassLoader) getObjectField(
                                         param.args[0], "definingContext"));

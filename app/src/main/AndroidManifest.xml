@@ -16,7 +16,7 @@
             android:value="Re-enable Wechat cloud backup." />
         <meta-data
             android:name="xposedminversion"
-            android:value="54" />
+            android:value="30" />
 
     </application>
 

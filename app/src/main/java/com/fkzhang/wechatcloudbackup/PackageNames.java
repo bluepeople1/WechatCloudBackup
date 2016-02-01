@@ -18,6 +18,9 @@ public class PackageNames {
 
         initNames();
         switch (version) {
+            case "6.3.13:":
+                set6313();
+                break;
             case "6.3.11":
                 set6311();
                 break;
@@ -67,6 +70,11 @@ public class PackageNames {
         class1 += "ah";
         method1 = "tD";
         method2 = "rn";
+    }
+
+    private void set6313() {
+        set6311();
+        dexName = "secondary-2";
     }
 
     private void initNames() {

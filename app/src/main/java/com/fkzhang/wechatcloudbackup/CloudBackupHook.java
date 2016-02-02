@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.io.File;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 
 import static de.robv.android.xposed.XposedHelpers.callMethod;
 import static de.robv.android.xposed.XposedHelpers.callStaticMethod;
@@ -35,10 +36,9 @@ public class CloudBackupHook {
                         super.afterHookedMethod(param);
                         for (Object o : (Object[]) param.args[2]) {
                             String v;
-                            try{
+                            try {
                                 v = ((File) getObjectField(o, "file")).getName();
-                            }
-                            catch (Throwable t){
+                            } catch (Throwable t) {
                                 v = ((File) getObjectField(o, "zip")).getName();
                             }
                             if (v.contains(mP.dexName)) {
@@ -56,8 +56,6 @@ public class CloudBackupHook {
                 "onCreate", Bundle.class, new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                        super.afterHookedMethod(param);
-
                         TextView textView = (TextView) getObjectField(param.thisObject, mP.textView);
                         textView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -72,6 +70,7 @@ public class CloudBackupHook {
                                         mP.method2), "get", 68416, Integer.valueOf(0));
 
                                 intent.putExtra("downloadUin", uin);
+
                                 activity.startActivity(intent);
                             }
                         });
@@ -81,7 +80,6 @@ public class CloudBackupHook {
                 new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        super.afterHookedMethod(param);
                         Button upload = (Button) getObjectField(param.thisObject, mP.uploadButton);
                         upload.setVisibility(View.VISIBLE);
                     }

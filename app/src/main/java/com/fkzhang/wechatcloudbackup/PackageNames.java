@@ -12,27 +12,22 @@ public class PackageNames {
     public String method2;
     public String dexName;
 
-    public PackageNames(String packageName, String version) {
+    public PackageNames(String packageName, String versionName) {
         this.packageName = packageName;
 
 
         initNames();
-        switch (version) {
-            case "6.3.13:":
-                set6313();
-                break;
-            case "6.3.11":
-                set6311();
-                break;
-            case "6.3.9":
-                set639();
-                break;
-            case "6.3.8":
-                set638();
-                break;
-            case "6.3.5":
-                set635();
-                break;
+
+        if (versionName.contains("6.3.13")) {
+            set6313();
+        } else if (versionName.contains("6.3.11")) {
+            set6311();
+        } else if (versionName.contains("6.3.9")) {
+            set639();
+        } else if (versionName.contains("6.3.8")) {
+            set638();
+        } else if (versionName.contains("6.3.5")) {
+            set635();
         }
     }
 
@@ -73,8 +68,12 @@ public class PackageNames {
     }
 
     private void set6313() {
-        set6311();
         dexName = "secondary-2";
+        uploadButton = "czZ";
+        textView = "cxQ";
+        class1 += "ah";
+        method1 = "tD";
+        method2 = "rn";
     }
 
     private void initNames() {

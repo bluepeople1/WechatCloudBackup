@@ -55,19 +55,15 @@ public class XposedInit implements IXposedHookLoadPackage {
         if (versionName == null)
             return null;
 
-        String version = versionName.substring(0, versionName.lastIndexOf("."));
+//        XposedBridge.log(versionName);
 
-        switch (version) {
-            case "6.3.13":
-            case "6.3.11":
-            case "6.3.9":
-            case "6.3.8":
-            case "6.3.5":
-                mWechatHooks.put(uid, new CloudBackupHook(new PackageNames(packageName, version)));
-                break;
-            default:
-                XposedBridge.log("wechat version " + version + " not supported, please upgrade");
-                return null;
+        if (versionName.contains("6.3.13") || versionName.contains("6.3.11") ||
+                versionName.contains("6.3.9") || versionName.contains("6.3.8") ||
+                versionName.contains("6.3.5")) {
+            mWechatHooks.put(uid, new CloudBackupHook(new PackageNames(packageName, versionName)));
+        } else {
+            XposedBridge.log("wechat version " + versionName + " not supported, please upgrade");
+            return null;
         }
 
         return mWechatHooks.get(uid);

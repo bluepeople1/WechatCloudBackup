@@ -26,9 +26,16 @@ public class PackageNames {
             set639();
         } else if (versionName.contains("6.3.8")) {
             set638();
+        } else if (versionName.contains("6.3.5.50")) {
+            set635_50();
         } else if (versionName.contains("6.3.5")) {
             set635();
         }
+    }
+
+    private void set635_50() {
+        set635();
+        dexName = "secondary-1";
     }
 
     private void set635() {

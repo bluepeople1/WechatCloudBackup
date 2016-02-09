@@ -1,6 +1,7 @@
 package com.fkzhang.wechatcloudbackup;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.SparseArray;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -16,6 +17,8 @@ import static de.robv.android.xposed.XposedHelpers.findClass;
  */
 public class XposedInit implements IXposedHookLoadPackage {
     private SparseArray<CloudBackupHook> mWechatHooks;
+    private String[] mSupportedVersions = {"6.3.13", "6.3.11", "6.3.9", "6.3.8",
+            "6.3.5.50", "6.3.5"};
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
@@ -52,21 +55,29 @@ public class XposedInit implements IXposedHookLoadPackage {
             return mWechatHooks.get(uid);
         }
 
-        if (versionName == null)
+        if (TextUtils.isEmpty(versionName))
             return null;
 
-//        XposedBridge.log(versionName);
-
-        if (versionName.contains("6.3.13") || versionName.contains("6.3.11") ||
-                versionName.contains("6.3.9") || versionName.contains("6.3.8") ||
-                versionName.contains("6.3.5")) {
+        if (isVersionSupported(versionName)) {
             mWechatHooks.put(uid, new CloudBackupHook(new PackageNames(packageName, versionName)));
         } else {
             XposedBridge.log("wechat version " + versionName + " not supported, please upgrade");
             return null;
         }
-
         return mWechatHooks.get(uid);
+    }
+
+
+    private boolean isVersionSupported(String versionName) {
+        if (TextUtils.isEmpty(versionName))
+            return false;
+
+        for (String v : mSupportedVersions) {
+            if (versionName.contains(v)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
